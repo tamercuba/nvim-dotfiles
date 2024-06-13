@@ -16,8 +16,6 @@ local function config_mypy(configs, lspconfig, capabilities, on_attach)
         cmd = {
           "dmypy",
           "run",
-          "--log-file",
-          "/Users/tamer.cuba/Library/Application Support/Code/User/workspaceStorage/7d7d1931029f99f762475e434e71942f/matangover.mypy/dmypy-e5e665e3b51164bccb74552378bc6bbdae362ede.log",
           "--",
           "--python-executable",
           get_python_executable(),
@@ -46,7 +44,7 @@ local function setup_keymaps(_, bufnr)
   map("n", "gd", vim.lsp.buf.definition, opts)
   map("n", "K", vim.lsp.buf.hover, opts)
   map("n", "<leader>vws", vim.lsp.buf.workspace_symbol, opts)
-  map("n", "<leader>vd", vim.diagnostic.open_float, opts)
+  map("n", "<leader>vd", vim.diagnostic.open_float, { desc = "[V]iew [D]iagnostics", buffer = bufnr, remap = false })
   map("n", "[d", vim.diagnostic.goto_next, opts)
   map("n", "]d", vim.diagnostic.goto_prev, opts)
   map("n", "<leader>ca", vim.lsp.buf.code_action, opts)

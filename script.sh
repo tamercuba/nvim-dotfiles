@@ -1,6 +1,9 @@
 #!/bin/bash
 
 CONFIG_DIR="$HOME/.config/nvim"
+
+rm -rf ./nvim
+mkdir nvim
 cp -r "$CONFIG_DIR"/* ./nvim
 git add .
 COMMIT_MSG=${1:- "Neovim config files"}

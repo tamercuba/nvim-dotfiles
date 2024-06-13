@@ -32,3 +32,17 @@ vim.keymap.set('n', '<c-J>', 'yyddp')  -- UP
 -- H/L To go to begin/end of line
 vim.keymap.set('n', 'H', '_')
 vim.keymap.set('n', 'L', '$')
+
+vim.diagnostic.config({
+  virtual_text = {
+    prefix = '●', -- Pode ser qualquer caractere
+    source = 'always', -- Inclui o nome do LSP
+  },
+  signs = true,
+  underline = true,
+  update_in_insert = false,
+  severity_sort = true,
+  float = {
+    source = 'always', -- Inclui o nome do LSP
+  },
+})
