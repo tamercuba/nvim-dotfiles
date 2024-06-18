@@ -27,7 +27,7 @@ return { -- Autoformat
     log_level = vim.log.levels.ERROR,
     formatters_by_ft = {
       lua = { 'stylua' },
-      python = { 'ruff_format' },
+      python = { 'ruff_format', 'isort' },
       rust = { 'rust_analyzer' }
       -- Conform can also run multiple formatters sequentially
       -- python = { "isort", "black" },

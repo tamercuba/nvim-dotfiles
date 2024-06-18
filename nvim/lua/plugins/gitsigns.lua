@@ -44,6 +44,6 @@ return {
         col = 1
       },
     }
-    vim.keymap.set('n', '<leader>Gp', ':Gitsigns preview_hunk<CR>', { desc = '[G]it [P]review Hunk' })
+    vim.keymap.set('n', '<leader>gp', ':Gitsigns preview_hunk<CR>', { desc = '[G]it [P]review Hunk' })
   end
 }

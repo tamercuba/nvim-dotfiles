@@ -9,48 +9,21 @@ local function get_python_executable()
   end
 end
 
-local function config_mypy(configs, lspconfig, capabilities, on_attach)
-  if not configs.mypy then
-    configs.mypy = {
-      default_config = {
-        cmd = {
-          "dmypy",
-          "run",
-          "--",
-          "--python-executable",
-          get_python_executable(),
-          ".",
-          "--show-error-end",
-          "--no-error-summary",
-          "--no-pretty",
-          "--no-color-output",
-          "--config-file",
-          vim.fn.expand("%:p:h") .. "/pyproject.toml"
-        },
-        filetypes = { "python" },
-        root_dir = lspconfig.util.find_git_ancestor or lspconfig.util.path.dirname,
-        capabilities = capabilities,
-        on_attach = on_attach,
-        settings = {}
-      }
-    }
-  end
-end
-
 local function setup_keymaps(_, bufnr)
   local opts = { buffer = bufnr, remap = false }
   local map = vim.keymap.set
 
   map("n", "gd", vim.lsp.buf.definition, opts)
   map("n", "K", vim.lsp.buf.hover, opts)
-  map("n", "<leader>vws", vim.lsp.buf.workspace_symbol, opts)
+  map("n", "<leader>vw", vim.lsp.buf.workspace_symbol,
+    { desc = 'Search symbol in [W]orkspace', buffer = bufnr, remap = false })
   map("n", "<leader>vd", vim.diagnostic.open_float, { desc = "[V]iew [D]iagnostics", buffer = bufnr, remap = false })
   map("n", "[d", vim.diagnostic.goto_next, opts)
   map("n", "]d", vim.diagnostic.goto_prev, opts)
   map("n", "<leader>ca", vim.lsp.buf.code_action, opts)
-  map("n", "<leader>gr", vim.lsp.buf.references, opts)
-  map("n", "<leader>vrn", vim.lsp.buf.rename, opts)
-  map("n", "<leader>vh", vim.lsp.buf.signature_help, opts)
+  map("n", "gr", vim.lsp.buf.references, opts)
+  map("n", "<leader>vr", vim.lsp.buf.rename, { desc = '[R]ename', buffer = bufnr, remap = false })
+  map("n", "<leader>vh", vim.lsp.buf.signature_help, { desc = 'Signature [H]elp', buffer = bufnr, remap = false })
 end
 
 local function get_capabilities()
@@ -98,6 +71,7 @@ return {
       })
     end
   },
+
   {
     "neovim/nvim-lspconfig",
     config = function()
@@ -153,10 +127,20 @@ return {
           },
         },
       })
-
-      local configs = require('lspconfig.configs')
-      config_mypy(configs, lsp, get_capabilities(), setup_keymaps)
-      setup_lsp('mypy')
+      setup_lsp('pylsp', {
+        settings = {
+          pylsp = {
+            plugins = {
+              pylsp_mypy = {
+                enabled = true,
+                overrides = { "--python-executable", get_python_executable(), true },
+                report_progress = true,
+                live_mode = false
+              }
+            }
+          }
+        }
+      })
     end
   },
   { 'hrsh7th/cmp-nvim-lsp' },
