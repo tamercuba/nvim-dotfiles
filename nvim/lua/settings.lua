@@ -1,4 +1,5 @@
 vim.g.mapleader = " "
+vim.o.autoread = true
 vim.cmd("set expandtab")
 vim.cmd("set shiftwidth=2")
 vim.cmd("set tabstop=2")
@@ -8,6 +9,7 @@ vim.cmd("set relativenumber")
 vim.cmd("set colorcolumn=80,120")
 vim.cmd("set clipboard+=unnamedplus")
 vim.cmd("set smartindent")
+vim.cmd("set laststatus=2")
 vim.g.python3_host_prog = '/Users/tamer.cuba/.pyenv/shims/python3'
 vim.opt.smartindent = true
 vim.opt.termguicolors = true
@@ -24,10 +26,8 @@ do
   vim.keymap.set('i', chr, chr .. closing_pairs[key] .. '<esc>i', {})
 end
 
--- Control (^) + j/k to move line up/down
-vim.keymap.set('n', '<c-K>', 'yyddkP') -- DOWN
-vim.keymap.set('n', '<c-J>', 'yyddp')  -- UP
-
+vim.keymap.set('n', '<leader>j', 'yyddp', { desc = "Move line UP" })
+vim.keymap.set('n', '<leader>k', 'yyddkP', { desc = "Move Line Down" })
 
 -- H/L To go to begin/end of line
 vim.keymap.set('n', 'H', '_')

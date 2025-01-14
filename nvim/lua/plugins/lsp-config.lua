@@ -1,4 +1,4 @@
-local ensure_installed = { 'lua_ls', 'rust_analyzer', 'ruff', "pyright" }
+local ensure_installed = { 'lua_ls', 'rust_analyzer', 'ruff', "pylsp", "pyright", "gopls" }
 
 local function get_python_executable()
   local venv_path = os.getenv('VIRTUAL_ENV')
@@ -116,7 +116,7 @@ return {
       })
       setup_lsp('pyright', {
         before_init = function(params)
-          params.processId = vim.NIL
+          params.processIs = vim.NIL
           params.rootPath = vim.fn.getcwd()
           params.rootUri = vim.uri_from_fname(vim.fn.getcwd())
           params.initializationOptions = { pythonPath = get_python_executable() }
@@ -124,8 +124,31 @@ return {
         settings = {
           python = {
             pythonPath = get_python_executable(),
+            typeCheckingMode = 'off',
+            analyzeUnannotatedFunctions = false,
+            reportReturnType = false,
+            diagnosticMode = 'openFilesOnly',
+            useLibraryCodeForTypes = true
+
           },
-        },
+        }
+      })
+      setup_lsp('gopls', {
+        {
+          settings = {
+            gopls = {
+              hints = {
+                assignVariableTypes = true,
+                compositeLiteralFields = true,
+                compositeLiteralTypes = true,
+                constantValues = true,
+                functionTypeParameters = true,
+                parameterNames = true,
+                rangeVariableTypes = true,
+              },
+            },
+          }
+        }
       })
       setup_lsp('pylsp', {
         settings = {
@@ -133,12 +156,14 @@ return {
             plugins = {
               pylsp_mypy = {
                 enabled = true,
-                overrides = { "--python-executable", get_python_executable(), true },
+                overrides = { "--python-executable", get_python_executable(), true, "--disallow-untyped-calls" },
                 report_progress = true,
-                live_mode = false
+                live_mode = true,
+                strict = true,
+
               }
             }
-          }
+          },
         }
       })
     end
