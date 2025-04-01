@@ -16,6 +16,7 @@ vim.opt.rtp:prepend(lazypath)
 require('settings')
 require('keymaps')
 require("lazy").setup("plugins")
+require('kulala')
 
 vim.opt.list = true
 vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }

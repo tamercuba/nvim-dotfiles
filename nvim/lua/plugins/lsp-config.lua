@@ -101,7 +101,7 @@ return {
           }
         },
       }, rust_on_attach)
-      setup_lsp('ruff_lsp', {
+      setup_lsp('ruff', {
         before_init = function(params)
           params.processId = vim.NIL
           params.rootPath = vim.fn.getcwd()
@@ -150,6 +150,7 @@ return {
           }
         }
       })
+      setup_lsp('clojure_lsp')
       setup_lsp('pylsp', {
         settings = {
           pylsp = {
@@ -174,21 +175,26 @@ return {
     config = function()
       local cmp = require('cmp')
       cmp.setup({
-        sources = { { name = 'nvim_lsp' } },
+        sources = { { name = 'nvim_lsp' }, { name = 'buffer' } },
         mapping = {
           ['<CR>'] = cmp.mapping.confirm({ select = false }),
           ['<c-Space>'] = cmp.mapping.complete(),
           ['<c-e>'] = cmp.mapping.abort(),
           ['<Up>'] = cmp.mapping.select_prev_item({ behavior = 'select' }),
           ['<Down>'] = cmp.mapping.select_next_item({ behavior = 'select' }),
-          ['<c-p>'] = cmp.mapping(function()
+          ['<c-k>'] = cmp.mapping(function()
             if cmp.visible() then cmp.select_prev_item({ behavior = 'insert' }) else cmp.complete() end
           end),
-          ['<c-n>'] = cmp.mapping(function()
+          ['<c-j>'] = cmp.mapping(function()
             if cmp.visible() then cmp.select_next_item({ behavior = 'insert' }) else cmp.complete() end
           end),
         },
-        snippet = { expand = function(args) require('luasnip').lsp_expand(args.body) end }
+        snippet = {
+          expand = function(args) require('luasnip').lsp_expand(args.body) end,
+          completion = {
+            autocomplete = { require('cmp.types').cmp.TriggerEvent.TextChanged }
+          }
+        }
       })
     end
   },
