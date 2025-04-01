@@ -84,6 +84,7 @@ return {
 		dependencies = { "hrsh7th/cmp-nvim-lsp" }, -- Integração com CMP
 		config = function()
 			local lspconfig = require("lspconfig")
+			local signature = require("lsp.signature")
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 			local on_attach = function(client, bufnr)
@@ -108,13 +109,9 @@ return {
 				map("n", "]d", vim.diagnostic.goto_prev, opts)
 				map("n", "<leader>ca", vim.lsp.buf.code_action, opts)
 				map("n", "gr", vim.lsp.buf.references, opts)
-				map("n", "<leader>vr", vim.lsp.buf.rename, { desc = "[R]ename", buffer = bufnr, remap = false })
-				map(
-					"n",
-					"<leader>vh",
-					vim.lsp.buf.signature_help,
-					{ desc = "Signature [H]elp", buffer = bufnr, remap = false }
-				)
+				map("n", "<leader>vr", require("lsp.renamer"), { desc = "[R]ename", buffer = bufnr, remap = false })
+
+				signature.setup(client, bufnr)
 			end
 
 			-- Configuração global de diagnósticos
