@@ -15,7 +15,7 @@ return {
 
 		require("lualine").setup({
 			options = {
-				theme = "palenight",
+				theme = "catppuccin",
 				--        theme = 'onedark',
 			},
 			sections = {
