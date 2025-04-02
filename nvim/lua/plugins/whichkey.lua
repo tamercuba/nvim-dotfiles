@@ -9,9 +9,9 @@ return {
 		})
 
 		require("which-key").register({
-			{ "<leader>f", group = "[F]ind" },
-			{ "<leader>g", group = "[G]it" },
-			{ "<leader>v", group = "LSP" },
+			{ "<leader>f", desc = "[F]ind" },
+			{ "<leader>g", desc = "[G]it" },
+			{ "<leader>v", desc = "LSP" },
 			{ "<leader>h", desc = "Git [H]unk", mode = "v", prefix = "" },
 		})
 	end,
