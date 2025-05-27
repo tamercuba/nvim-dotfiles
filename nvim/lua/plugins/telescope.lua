@@ -11,8 +11,6 @@ return {
 			vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "[F]ind [Help]" })
 			require("telescope").setup({
 				defaults = {
-					layout_strategy = "cursor",
-					sorting_strategy = "ascending", -- Aqui está a mudança
 					layout_config = {
 						preview_width = 0.3,
 					},
@@ -26,7 +24,7 @@ return {
 			require("telescope").setup({
 				extensions = {
 					["ui-select"] = {
-						require("telescope.themes").get_cursor(),
+						require("telescope.themes").get_dropdown(),
 					},
 				},
 			})

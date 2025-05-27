@@ -1,4 +1,4 @@
-local ensure_installed = { "lua_ls", "pyright", "gopls", "rust_analyzer", "ruff", "pylsp" }
+local ensure_installed = { "lua_ls", "pyright", "gopls", "rust_analyzer", "ruff", "pylsp", "ts_ls", "clojure_lsp" }
 
 local function get_python_executable()
 	local venv_path = os.getenv("VIRTUAL_ENV")
@@ -78,6 +78,25 @@ local function set_pylsp_config(opts)
 	}
 end
 
+local function set_clojure_lsp_config(opts)
+	opts.settings = {
+		clojure = {
+			format = {
+				provider = "cljfmt",
+			},
+			lint = {
+				lintOnChange = true,
+				lintOnSave = true,
+				lintOnReplLoad = true,
+			},
+			repl = {
+				type = "clj",
+				autoStart = true,
+			},
+		},
+	}
+end
+
 return {
 	{
 		"neovim/nvim-lspconfig",
@@ -107,7 +126,12 @@ return {
 				)
 				map("n", "[d", vim.diagnostic.goto_next, opts)
 				map("n", "]d", vim.diagnostic.goto_prev, opts)
-				map("n", "<leader>ca", vim.lsp.buf.code_action, opts)
+				map(
+					"n",
+					"<leader>ca",
+					vim.lsp.buf.code_action,
+					{ desc = "Code [A]ction", buffer = bufnr, remap = false }
+				)
 				map("n", "gr", vim.lsp.buf.references, opts)
 				map("n", "<leader>vr", require("lsp.renamer"), { desc = "[R]ename", buffer = bufnr, remap = false })
 
@@ -153,6 +177,10 @@ return {
 
 					if server_name == "pylsp" then
 						set_pylsp_config(opts)
+					end
+
+					if server_name == "clojure_lsp" then
+						set_clojure_lsp_config(opts)
 					end
 
 					-- Aplica configuração específica por LSP

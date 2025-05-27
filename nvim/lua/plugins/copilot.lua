@@ -11,5 +11,7 @@ return {
 				print("Copilot enabled")
 			end
 		end, { desc = "Toggle [G]ithub [C]opilot" })
+		vim.g.copilot_no_tab_map = true
+		vim.api.nvim_set_keymap("i", "<S-Tab>", 'copilot#Accept("<CR>")', { silent = true, expr = true })
 	end,
 }

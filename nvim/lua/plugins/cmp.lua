@@ -43,6 +43,8 @@ return {
 				["<C-Space>"] = cmp.mapping.complete(),
 			}),
 			sources = cmp.config.sources({
+				{ name = "conjure" },
+				{ name = "ts_ls" },
 				{ name = "nvim_lsp" },
 				{ name = "buffer" },
 				{ name = "path" },

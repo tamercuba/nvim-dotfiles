@@ -2,17 +2,19 @@ return {
 	"folke/which-key.nvim",
 	event = "VimEnter",
 	config = function()
-		require("which-key").setup({
-			ignore_missing = true, -- Oculta warnings sobre mapeamentos antigos
+		local wk = require("which-key")
+
+		wk.setup({
 			silent = true,
 			disable = { warnings = true },
 		})
 
-		require("which-key").register({
-			{ "<leader>f", desc = "[F]ind" },
-			{ "<leader>g", desc = "[G]it" },
-			{ "<leader>v", desc = "LSP" },
-			{ "<leader>h", desc = "Git [H]unk", mode = "v", prefix = "" },
+		-- Novo formato de grupo sugerido pelo warning
+		wk.add({
+			{ "<leader>f", group = "[F]ind" },
+			{ "<leader>g", group = "[G]it" },
+			{ "<leader>v", group = "LSP" },
+			{ "<leader>h", group = "Git [H]unk", mode = "v" },
 		})
 	end,
 }

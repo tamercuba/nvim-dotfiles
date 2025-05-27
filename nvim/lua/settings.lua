@@ -1,5 +1,5 @@
 vim.g.mapleader = " "
-vim.g.maplocalleaver = ","
+vim.g.maplocalleader = ","
 vim.o.autoread = true
 vim.cmd("set expandtab")
 vim.cmd("set shiftwidth=2")
