@@ -26,4 +26,4 @@ if ["$current_branch" != "$branch_flag"]; then
 fi
 
 git commit -m "$COMMIT_MSG"
-git push origin "branch_flag"
+git push origin "$branch_flag"
