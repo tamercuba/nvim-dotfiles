@@ -18,6 +18,12 @@ mkdir nvim
 cp -r "$CONFIG_DIR"/* ./nvim
 git add .
 COMMIT_MSG=${1:- "Neovim config files"}
-git checkout "$branch_flag"
+
+current_branch=$(git branch --show-current)
+
+if ["$current_branch" != "$branch_flag"]; then
+  git checkout "$branch_flag"
+fi
+
 git commit -m "$COMMIT_MSG"
 git push origin "branch_flag"
