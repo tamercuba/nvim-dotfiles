@@ -37,4 +37,3 @@ return {
 		end, { desc = "[C]lear [H]arpoon" })
 	end,
 }
-

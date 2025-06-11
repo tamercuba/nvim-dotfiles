@@ -1,2 +1,6 @@
-return { 'akinsho/toggleterm.nvim', version = "*", config = true, opts = { open_mapping = [[<c-]>]], shell = '/bin/zsh' } }
-
+return {
+	"akinsho/toggleterm.nvim",
+	version = "*",
+	config = true,
+	opts = { open_mapping = [[<c-]>]], shell = "/bin/zsh" },
+}

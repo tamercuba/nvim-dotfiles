@@ -41,4 +41,3 @@ local config = { -- Autoformat
 	},
 }
 return config
-
