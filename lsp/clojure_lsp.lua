@@ -1,9 +1,6 @@
 return {
 	cmd = { "clojure-lsp" },
-	filetypes = { "clj", "edn" },
-	root_dir = function(startpath)
-		return M.search_ancestors(startpath, matcher)
-	end,
+	filetypes = { "clojure", "edn" },
 	opts = {
 		settings = {
 			clojure = {
