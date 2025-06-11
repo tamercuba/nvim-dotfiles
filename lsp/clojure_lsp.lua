@@ -1,25 +1,25 @@
 return {
-	cmd = { "clojure-lsp" }
-	filetypes = { "clojure", "edn" }
+	cmd = { "clojure-lsp" },
+	filetypes = { "clj", "edn" },
 	root_dir = function(startpath)
-	    return M.search_ancestors(startpath, matcher)
-	end
+		return M.search_ancestors(startpath, matcher)
+	end,
 	opts = {
 		settings = {
-			    clojure = {
-			      format = {
-				provider = "cljfmt",
-			      },
-			      lint = {
-				lintOnChange = true,
-				lintOnSave = true,
-				lintOnReplLoad = true,
-			      },
-			      repl = {
-				type = "clj",
-				autoStart = true,
-			      },
-    },
-		}
-	}
+			clojure = {
+				format = {
+					provider = "cljfmt",
+				},
+				lint = {
+					lintOnChange = true,
+					lintOnSave = true,
+					lintOnReplLoad = true,
+				},
+				repl = {
+					type = "clj",
+					autoStart = true,
+				},
+			},
+		},
+	},
 }
