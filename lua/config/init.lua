@@ -1,0 +1,5 @@
+require("config.autocmds")
+require("config.clojure")
+require("config.opts")
+require("config.keymaps")
+require("config.renamer")
