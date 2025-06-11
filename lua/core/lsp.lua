@@ -10,6 +10,7 @@ vim.diagnostic.config({
 		border = "rounded",
 		source = true,
 	},
+	root_markers = { ".git" },
 	signs = {
 		text = {
 			[vim.diagnostic.severity.ERROR] = "󰅚 ",

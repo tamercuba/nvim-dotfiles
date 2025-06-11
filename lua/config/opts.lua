@@ -40,4 +40,3 @@ vim.diagnostic.config({
 		source = "always", -- Inclui o nome do LSP
 	},
 })
-
