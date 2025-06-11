@@ -23,7 +23,15 @@ return {
 					},
 				},
 				keymap = {
+					["<C-j>"] = { "select_next", "fallback" },
+					["<C-k>"] = { "select_prev", "fallback" },
+					["<CR>"] = { "accept", "fallback" },
+					-- Desabilitar Tab (para deixar livre pro Copilot)
+					["<Tab>"] = {},
+					["<S-Tab>"] = {},
 					["<C-f>"] = {},
+					["<Up>"] = { "select_prev", "fallback" },
+					["<Down>"] = { "select_next", "fallback" },
 				},
 				cmdline = {
 					enabled = false,

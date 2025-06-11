@@ -1,8 +1,8 @@
 vim.lsp.enable({ "lua_ls", "pyright", "gopls", "rust_analyzer", "ruff", "ts_ls", "clojure_lsp" })
 
 vim.diagnostic.config({
-	virtual_lines = true,
-	-- virtual_text = true,
+	-- virtual_lines = true,
+	virtual_text = true,
 	underline = true,
 	update_in_insert = false,
 	severity_sort = true,
