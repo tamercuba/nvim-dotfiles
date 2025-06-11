@@ -10,14 +10,15 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
 		map("gl", vim.diagnostic.open_float, "Open Diagnostic Float")
 		map("K", vim.lsp.buf.hover, "Hover Documentation")
-		map("gs", vim.lsp.buf.signature_help, "Signature Documentation")
-		map("gd", vim.lsp.buf.declaration, "Goto Declaration")
-		map("<leader>la", vim.lsp.buf.code_action, "Code Action")
-		map("<leader>lr", vim.lsp.buf.rename, "Rename all references")
-		map("<leader>lf", vim.lsp.buf.format, "Format")
+		map("gs", vim.lsp.buf.signature_help, "[S]ignature Documentation")
+		map("gd", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
+		map("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction")
+		map("<leader>lr", vim.lsp.buf.rename, "[R]ename all references")
+		map("<leader>lf", vim.lsp.buf.format, "[F]ormat")
 		map("<leader>v", "<cmd>vsplit | lua vim.lsp.buf.definition()<cr>", "Goto Definition in Vertical Split")
 		map("]d", vim.diagnostic.goto_next, "Next Diagnostic")
 		map("[d", vim.diagnostic.goto_prev, "Previous Diagnostic")
+		map("<leader>vr", require("renamer"), "[R]ename buffer")
 
 		local function client_supports_method(client, method, bufnr)
 			if vim.fn.has("nvim-0.11") == 1 then
