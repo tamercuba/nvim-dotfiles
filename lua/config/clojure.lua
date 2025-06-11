@@ -26,3 +26,6 @@ vim.api.nvim_create_autocmd("FileType", {
 	end,
 })
 
+vim.api.nvim_create_user_command("ConjureGo", function()
+	vim.cmd("ConjureConnect")
+end, {desc = "Conecta o Conjure ao REPL"})
