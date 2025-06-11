@@ -1,4 +1,4 @@
-vim.lsp.enable({ "lua_ls", "pyright", "gopls", "rust_analyzer", "ruff", "ts_ls", "clojure_lsp" })
+vim.lsp.enable({ "lua_ls", "pyright", "gopls", "rust_analyzer", "ruff", "ruff_lsp", "ts_ls", "clojure_lsp" })
 
 vim.diagnostic.config({
 	-- virtual_lines = true,

@@ -21,7 +21,7 @@ return {
 	settings = {
 		python = {
 			pythonPath = get_python_executable(),
-			typeCheckingMode = "standard",
+			typeCheckingMode = "basic",
 			analyzeUnannotatedFunctions = false,
 			reportReturnType = true,
 			diagnosticMode = "workspace",
