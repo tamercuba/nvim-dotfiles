@@ -3,12 +3,16 @@ vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
 vim.g.mapleader = " "
 vim.g.maplocalleader = ","
 vim.o.autoread = true
-vim.cmd("set expandtab")
-vim.cmd("set shiftwidth=2")
-vim.cmd("set tabstop=2")
-vim.cmd("set softtabstop=2")
+
+vim.opt.tabstop = 2
+vim.opt.softtabstop = 2
+vim.opt.shiftwidth = 2
+vim.opt.expandtab = true
+vim.opt.autoindent = true
+vim.opt.smartindent = true
+vim.opt.wrap = false
+
 vim.cmd("set number")
-vim.cmd("set relativenumber")
 vim.cmd("set colorcolumn=80,120")
 vim.cmd("set clipboard+=unnamedplus")
 vim.cmd("set smartindent")
@@ -16,16 +20,19 @@ vim.cmd("set laststatus=2")
 vim.g.python3_host_prog = "/Users/tamer.cuba/.pyenv/shims/python3"
 vim.opt.smartindent = true
 vim.opt.termguicolors = true
-vim.opt.scrolloff = 15
+vim.opt.scrolloff = 8
 vim.opt.signcolumn = "yes"
 vim.opt.breakindent = true
 
-vim.keymap.set("n", "<leader>j", "yyddp", { desc = "Move line UP" })
-vim.keymap.set("n", "<leader>k", "yyddkP", { desc = "Move Line Down" })
+vim.opt.incsearch = true
+vim.opt.inccommand = "split"
 
--- H/L To go to begin/end of line
-vim.keymap.set("n", "H", "_")
-vim.keymap.set("n", "L", "$")
+vim.opt.backspace = { "start", "eol", "indent" }
+vim.opt.splitright = true
+vim.opt.splitbelow = true
+
+vim.opt.isfname:append("@-@")
+vim.opt.updatetime = 50
 
 vim.diagnostic.config({
 	virtual_text = {

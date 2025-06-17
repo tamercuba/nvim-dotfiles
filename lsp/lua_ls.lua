@@ -15,6 +15,13 @@ return {
 		"selene.yml",
 		"stylua.toml",
 	},
+	settings = {
+		Lua = {
+			diagnostics = {
+				globals = { "vim" },
+			},
+		},
+	},
 	-- settings = {
 	--     Lua = {
 	--         diagnostics = {
